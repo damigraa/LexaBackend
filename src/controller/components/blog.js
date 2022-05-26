@@ -1,4 +1,4 @@
-const Blog = require("../../models/components/contact")
+const Blog = require("../../models/components/blog")
 const mongoose = require("mongoose")
 
 exports.createBlog = (req, res) => {
@@ -13,10 +13,10 @@ exports.createBlog = (req, res) => {
             blogObj.iconImg = req.file.filename;
         }
         const blo = new Blog(blogObj)
-        blo.save((error, contact) => {
+        blo.save((error, blog) => {
             if (error) return res.status(400).json({ error, message: "Ошибка при создании!" })
-            if (contact) return (
-                res.status(201).json({ contact, message: "Успешно создано!" })
+            if (blog) return (
+                res.status(201).json({ blog, message: "Успешно создано!" })
             )
         })
     } catch (e) {
@@ -56,3 +56,5 @@ exports.deleteBlog = async (req, res) => {
 
     res.json({ message: "контакт удален успешно" });
 }
+
+
