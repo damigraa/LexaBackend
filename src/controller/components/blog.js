@@ -1,19 +1,25 @@
-const Blog = require("../../models/components/blog")
 const mongoose = require("mongoose")
+const slugify = require("slugify");
+const Blog = require("../../models/components/blog");
 
 exports.createBlog = (req, res) => {
     try {
-        const blogObj = {
-            title: req.body.title,
-            description: req.body.description,
-            href: req.body.href
-        }
+        const { title, description, videoHref } = req.body
+        let images = []
 
-        if (req.file) {
-            blogObj.iconImg = req.file.filename;
+        if (req.files.length > 0) {
+            images = req.files.map((file) => {
+                return { img: file.filename };
+            });
         }
-        const blo = new Blog(blogObj)
-        blo.save((error, blog) => {
+        const blog = new Blog({
+            title: title,
+            slug: slugify(title),
+            videoHref,
+            description,
+            images
+        });
+        blog.save((error, blog) => {
             if (error) return res.status(400).json({ error, message: "Ошибка при создании!" })
             if (blog) return (
                 res.status(201).json({ blog, message: "Успешно создано!" })
@@ -56,5 +62,21 @@ exports.deleteBlog = async (req, res) => {
 
     res.json({ message: "контакт удален успешно" });
 }
+
+
+
+exports.getBlogDetailsById = (req, res) => {
+    const { blogId } = req.params;
+    if (blogId) {
+        Blog.findOne({ _id: blogId }).exec((error, blog) => {
+            if (error) return res.status(400).json({ error });
+            if (blog) {
+                res.status(200).json({ blog });
+            }
+        });
+    } else {
+        return res.status(400).json({ error: "Params required" });
+    }
+};
 
 

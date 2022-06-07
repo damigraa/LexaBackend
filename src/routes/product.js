@@ -14,7 +14,7 @@ const {
 
 
 router.post("/product/create", requireSignin, adminMiddleware, upload.any("productPicture"), createProduct)
-router.get("/product/getProducts" , getProducts)
+router.get("/product/getProducts", getProducts)
 router.patch("/product/update/:id", requireSignin, adminMiddleware, updateProduct)
 router.delete("/product/delete/:id", requireSignin, adminMiddleware, deleteProductById)
 router.get("/products/:slug", getProductsBySlug)
@@ -24,4 +24,3 @@ router.get("/product/:productId", getProductDetailsById)
 
 module.exports = router;
 
- 

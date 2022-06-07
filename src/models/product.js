@@ -1,17 +1,17 @@
 const mongoose = require('mongoose');
 
 
-const productPriceSchema = new mongoose.Schema({
-    newPrice: {
-        type: String,
-        default: "20000"
-    },
-    size: {
-        type: String,
-        default: "1000x500x60"
-    },
+// const productPriceSchema = new mongoose.Schema({
+//     newPrice: {
+//         type: String,
+//         default: "20000"
+//     },
+//     size: {
+//         type: String,
+//         default: "1000x500x60"
+//     },
 
-})
+// })
 const productSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -41,13 +41,13 @@ const productSchema = new mongoose.Schema({
         // required: true,
         trim: true
     },
-    weight: {
+    weight: { 
         type: String,
         // required: true,
         trim: true
     },
     offer: { type: Number },
-    productPrice: [productPriceSchema],
+    // productPrice: [productPriceSchema],
     productPictures: [ 
         {
             img: {
@@ -68,5 +68,5 @@ const productSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-mongoose.model('ProductPrice', productPriceSchema);
+// mongoose.model('ProductPrice', productPriceSchema);
 module.exports = mongoose.model('Product', productSchema);

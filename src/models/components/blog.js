@@ -6,7 +6,12 @@ const blogSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    href: { 
+    slug: {
+        type: String,
+        // required: true,
+        unique: true
+    },
+    videoHref: {
         type: String,
         required: true,
     },
@@ -15,10 +20,13 @@ const blogSchema = new mongoose.Schema({
         required: true,
         max: 150
     },
-    iconImg: {
-        type: String,
-        // required: true,
-    }
+    images: [
+        {
+            img: {
+                type: String
+            }
+        }
+    ]
 }, { timestamps: true })
 
 
