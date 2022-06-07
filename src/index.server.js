@@ -34,19 +34,16 @@ const costDeliveryRoutes = require("./routes/components/costDelivery")
  
  
 env.config();
-// console.log(mongoose.connect())
 mongoose.connect(
   `mongodb+srv://Singam6191:Singam6191@lexclaster.zko55.mongodb.net/?retryWrites=true&w=majority`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    // useCreateIndex: true,
-    // useFindAndModify: false
   }
 ).then(() => {
   console.log('Database connected')
 })
-
+ 
 
 const port = process.env.PORT || 2000
 app.use(cors())
