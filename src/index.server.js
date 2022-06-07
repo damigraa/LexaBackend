@@ -30,12 +30,12 @@ const blogRoutes = require("./routes/components/blog")
 const paymentListInstructionRoutes = require("./routes/components/paymentListInstruction")
 const costDeliveryRoutes = require("./routes/components/costDelivery")
 
- 
- 
- 
+
+
+
 env.config();
 mongoose.connect(
-  `mongodb+srv://Singam6191:Singam6191@lexclaster.zko55.mongodb.net/?retryWrites=true&w=majority`,
+  `mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@lexclaster.zko55.mongodb.net/?retryWrites=true&w=majority`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -43,7 +43,7 @@ mongoose.connect(
 ).then(() => {
   console.log('Database connected')
 })
- 
+
 
 const port = process.env.PORT || 2000
 app.use(cors())
