@@ -4,7 +4,7 @@
   "description": "backend",
   "main": "app.js",
   "scripts": {
-    "server": "nodemon app.js",
+    "start": "node ./src/index.server.js",
     "serverTwo": "nodemon ./src/index.server.js"
   },
   "keywords": [
