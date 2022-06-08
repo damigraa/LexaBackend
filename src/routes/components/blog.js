@@ -8,7 +8,7 @@ router.post("/blog/create", upload.any("images"), createBlog)
 router.get("/blog/get", getBlog)
 router.patch("/blog/update/:id", updateBlog)
 router.delete("/blog/delete/:id", deleteBlog)
-router.get("/blog/:blogId", getBlogDetailsById)
+router.get("/blog/blogDetails/:blogId", getBlogDetailsById)
 
 
 module.exports = router

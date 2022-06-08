@@ -1,4 +1,4 @@
-const Product = require("../models/product");
+wconst Product = require("../models/product");
 const shortid = require("shortid");
 const slugify = require("slugify");
 const Category = require("../models/category");
