@@ -80,12 +80,12 @@ exports.getProductsBySlug = (req, res) => {
     const { sort } = req.query
 
     Category.findOne({ slug: slug })
-      .select("_id type")
+      .select("_id")
       .exec((error, category) => {
         if (error) {
           return res.status(400).json({ error });
         }
-        console.log(category && sort)
+        // console.log(category && sort)
         switch (category && sort) {
           case 'name':
             Product.find({ category: category.id }).sort({ name: 1 }).exec((error, products) => {
@@ -148,41 +148,12 @@ exports.getProductsBySlug = (req, res) => {
             })
             break
           default:
-            Product.find({ category: category.id }).sort({ updatedAt: -1 }).exec((error, products) => {
+            Product.find({ category: category.id }).exec((error, products) => {
               if (error) {
                 return res.status(400).json({ message: "Error products" })
               }
-              if (category.type) {
-
-                if (products.length > 0) {
-                  res.status(200).json({
-                    products,
-                    priceRange: {
-                      under5k: 5000,
-                      under10k: 10000,
-                      under15k: 15000,
-                      under20k: 20000,
-                      under30k: 30000,
-                    },
-                    productsByPrice: {
-                      under5k: products.filter((product) => product.price <= 5000),
-                      under10k: products.filter(
-                        product => product.price > 5000 && product.price <= 10000
-                      ),
-                      under15k: products.filter(
-                        (product) => product.price > 10000 && product.price <= 15000
-                      ),
-                      under20k: products.filter(
-                        (product) => product.price > 15000 && product.price <= 20000
-                      ),
-                      under30k: products.filter(
-                        (product) => product.price > 20000 && product.price <= 30000
-                      ),
-                    },
-                  });
-                }
-              } else {
-                res.status(400).json({ error });
+              if (products) {
+                return res.status(200).json({ products })
               }
             });
         }
@@ -192,6 +163,39 @@ exports.getProductsBySlug = (req, res) => {
     return res.status(500).json({ message: "Can not get products" })
   }
 };
+
+
+exports.getProductsBySlug = (req, res) => {
+  try {
+    const { slug } = req.params;
+
+    Category.findOne({ slug: slug })
+      .select("_id")
+      .exec((error, category) => {
+        if (error) {
+          return res.status(400).json({ error });
+        }
+        if(category){
+          Product.find({ category: category.id }).exec((error, products) => {
+            if (error) {
+              return res.status(400).json({ message: "Error products" })
+            }
+            if (products) {
+              return res.status(200).json({ products })
+            }
+          });
+        }
+      });
+  } catch (e) {
+    console.log(e)
+    return res.status(500).json({ message: "Can not get products" })
+  }
+};
+
+
+
+
+
 exports.getProductDetailsById = (req, res) => {
   const { productId } = req.params;
   if (productId) {

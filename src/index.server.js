@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const cors = require("cors");
 
-//routes
+//routes 
 const authRoutes = require("./routes/auth")
 const adminRoutes = require("./routes/admin/auth")
 const categoryRoutes = require("./routes/category")
@@ -42,11 +42,11 @@ mongoose.connect(
     useUnifiedTopology: true,
   }
 ).then(() => {
-  console.log('Database connected')
+  console.log('Database connected') 
 })
 
 
-const port = process.env.PORT || 2000
+const port = process.env.PORT || 2001 
 app.use(cors())
 app.use(express.json())
 app.use("/public", express.static(path.join(__dirname, "uploads")))
