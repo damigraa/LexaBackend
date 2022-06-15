@@ -27,9 +27,10 @@ const weWorkOnlineRoutes = require("./routes/components/weWorkOnline")
 const contactRoutes = require("./routes/components/contact")
 const blogRoutes = require("./routes/components/blog")
 const portfolioRoutes = require("./routes/components/portfolio")
-
+ 
 const paymentListInstructionRoutes = require("./routes/components/paymentListInstruction")
 const costDeliveryRoutes = require("./routes/components/costDelivery")
+const deliveryInfoRoutes = require("./routes/components/deliveryInfo")
 
 
 
@@ -72,6 +73,7 @@ app.use("/api", paymentListInstructionRoutes)
 app.use("/api", portfolioRoutes)
 app.use("/api", blogRoutes)
 
+app.use("/api", deliveryInfoRoutes)
 app.use("/api", costDeliveryRoutes)
 
 
