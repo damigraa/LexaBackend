@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 
 const path = require("path");
 const cors = require("cors");
-
+ 
 //routes 
 const authRoutes = require("./routes/auth")
 const adminRoutes = require("./routes/admin/auth")
