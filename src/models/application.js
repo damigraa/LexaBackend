@@ -5,28 +5,37 @@ const applicationSchema = new mongoose.Schema(
     firstName: {
       type: String,
       required: true,
-      min: 3,
-      max: 20,
+      min: 2,
+      max: 30,
+    },
+    nameCompany: {
+      type: String,
+      // required: true,
+      min: 1,
+      max: 100,
     },
     descriptionProblem: {
       type: String,
-      required: true,
-      min: 3,
-      max: 20,
+      // required: true,
+      min: 1,
+      max: 300,
     },
     email: {
       type: String,
-      required: true,
-      // trim: true,
-      // lowercase: true,
+      // required: true,
     },
     contactNumber: {
       type: String,
-      required: true,
+      // required: true,
     },
-    samplePhoto: {
-      type: String,
-    }
+    samplePhoto: [ 
+      {
+          img: {
+              type: String,
+              // required: true,
+          }
+      }
+  ],
   },
   { timestamps: true }
 );

@@ -1,21 +1,29 @@
 const Application = require("../models/application");
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const slugify = require("slugify");
+
 
 
 exports.applicationCreate = (req, res) => {
   try {
-    const applicationObj = { 
-      firstName: req.body.firstName,
-      descriptionProblem: req.body.descriptionProblem,
-      email: req.body.email,
-      contactNumber: req.body.contactNumber
+    const { firstName, nameCompany, descriptionProblem, email, contactNumber } = req.body
+    let samplePhoto = [];
+    
+    if (req.files.length > 0) {
+      samplePhoto = req.files.map((file) => {
+        return { img: file.filename };
+      });
     }
-
-    if (req.file) {
-      applicationObj.samplePhoto = req.file.filename;
-    }
-
-    const application = new Application(applicationObj)
+    const application = new Application({
+      firstName: firstName,
+      slug: slugify(firstName),
+      nameCompany,
+      descriptionProblem,
+      email,
+      samplePhoto,
+      contactNumber,
+      // createdBy: req.user._id,
+    });
     application.save((error, application) => {
       if (error) {
         return res.status(400).json({
