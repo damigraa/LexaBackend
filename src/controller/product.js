@@ -74,10 +74,100 @@ exports.getProducts = async (req, res) => {
   }
 }
 
+// exports.getProductsBySlug = (req, res) => {
+//   try {
+//     const { slug } = req.params;
+//     const { sort } = req.query
+
+//     Category.findOne({ slug: slug })
+//       .select("_id")
+//       .exec((error, category) => {
+//         if (error) {
+//           return res.status(400).json({ error });
+//         }
+//         // console.log(category && sort)
+//         switch (category && sort) {
+//           case 'name':
+//             Product.find({ category: category.id }).sort({ name: 1 }).exec((error, products) => {
+//               if (error) {
+//                 return res.status(400).json({ error })
+//               }
+//               if (products) {
+//                 return res.status(200).json({ products })
+//               }
+//             })
+//             break
+//           case 'nameMinus':
+//             Product.find({ category: category.id }).sort({ name: - 1 }).exec((error, products) => {
+//               if (error) {
+//                 return res.status(400).json({ error })
+//               }
+//               if (products) {
+//                 return res.status(200).json({ products })
+//               }
+//             })
+//             break
+//           case 'price':
+//             Product.find({ category: category.id }).sort({ price: - 1 }).exec((error, products) => {
+//               if (error) {
+//                 return res.status(400).json({ error })
+//               }
+//               if (products) {
+//                 return res.status(200).json({ products })
+//               }
+//             })
+//             break
+//           case 'priceMinus':
+//             Product.find({ category: category.id }).sort({ price: 1 }).exec((error, products) => {
+//               if (error) {
+//                 return res.status(400).json({ error })
+//               }
+//               if (products) {
+//                 return res.status(200).json({ products })
+//               }
+//             })
+//             break
+//           case 'updatedAt':
+//             Product.find({ category: category.id }).sort({ updatedAt: 1 }).exec((error, products) => {
+//               if (error) {
+//                 return res.status(400).json({ error })
+//               }
+//               if (products) {
+//                 return res.status(200).json({ products })
+//               }
+//             })
+//             break
+//           case 'updatedAtMinus':
+//             Product.find({ category: category.id }).sort({ updatedAt: -1 }).exec((error, products) => {
+//               if (error) {
+//                 return res.status(400).json({ error })
+//               }
+//               if (products) {
+//                 return res.status(200).json({ products })
+//               }
+//             })
+//             break
+//           default:
+//             Product.find({ category: category.id }).sort({ updatedAt:  -1 }).exec((error, products) => {
+//               if (error) {
+//                 return res.status(400).json({ error })
+//               }
+//               if (products) {
+//                 return res.status(200).json({ products })
+//               }
+//             })
+//         }
+//       });
+//   } catch (e) {
+//     console.log(e)
+//     return res.status(500).json({ message: "Can not get products" })
+//   }
+// };
+
+
 exports.getProductsBySlug = (req, res) => {
   try {
     const { slug } = req.params;
-    const { sort } = req.query
 
     Category.findOne({ slug: slug })
       .select("_id")
@@ -85,98 +175,8 @@ exports.getProductsBySlug = (req, res) => {
         if (error) {
           return res.status(400).json({ error });
         }
-        // console.log(category && sort)
-        switch (category && sort) {
-          case 'name':
-            Product.find({ category: category.id }).sort({ name: 1 }).exec((error, products) => {
-              if (error) {
-                return res.status(400).json({ error })
-              }
-              if (products) {
-                return res.status(200).json({ products })
-              }
-            })
-            break
-          case 'nameMinus':
-            Product.find({ category: category.id }).sort({ name: - 1 }).exec((error, products) => {
-              if (error) {
-                return res.status(400).json({ error })
-              }
-              if (products) {
-                return res.status(200).json({ products })
-              }
-            })
-            break
-          case 'price':
-            Product.find({ category: category.id }).sort({ price: - 1 }).exec((error, products) => {
-              if (error) {
-                return res.status(400).json({ error })
-              }
-              if (products) {
-                return res.status(200).json({ products })
-              }
-            })
-            break
-          case 'priceMinus':
-            Product.find({ category: category.id }).sort({ price: 1 }).exec((error, products) => {
-              if (error) {
-                return res.status(400).json({ error })
-              }
-              if (products) {
-                return res.status(200).json({ products })
-              }
-            })
-            break
-          case 'updatedAt':
-            Product.find({ category: category.id }).sort({ updatedAt: -1 }).exec((error, products) => {
-              if (error) {
-                return res.status(400).json({ error })
-              }
-              if (products) {
-                return res.status(200).json({ products })
-              }
-            })
-            break
-          case 'updatedAtMinus':
-            Product.find({ category: category.id }).sort({ updatedAtMinus: 1 }).exec((error, products) => {
-              if (error) {
-                return res.status(400).json({ error })
-              }
-              if (products) {
-                return res.status(200).json({ products })
-              }
-            })
-            break
-          default:
-            Product.find({ category: category.id }).exec((error, products) => {
-              if (error) {
-                return res.status(400).json({ message: "Error products" })
-              }
-              if (products) {
-                return res.status(200).json({ products })
-              }
-            });
-        }
-      });
-  } catch (e) {
-    console.log(e)
-    return res.status(500).json({ message: "Can not get products" })
-  }
-};
-
-
-exports.getProductsBySlug = (req, res) => {
-  try {
-    const { slug } = req.params;
-
-    Category.findOne({ slug: slug })
-      .select("_id")
-      .exec((error, category) => {
-        if (error) {
-          return res.status(400).json({ error });
-        }
-        if(category){
-          Product.find({ category: category.id }).exec((error, products) => {
+        if (category) {
+          Product.find({ category: category.id }).sort({ updatedAt: -1 }).exec((error, products) => {
             if (error) {
               return res.status(400).json({ message: "Error products" })
             }
