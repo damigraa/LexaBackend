@@ -61,7 +61,7 @@ exports.getProducts = async (req, res) => {
         products = await pSort.sort({ updatedAt: 1 })
         break
       case 'updatedAtMinus':
-        products = await pSort.sort({ updatedAt: -1 })
+      products = await pSort.sort({ updatedAt: -1 })
         break
       default:
         products = await pSort.sort({ updatedAt: -1 })
