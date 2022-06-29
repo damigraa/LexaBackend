@@ -18,6 +18,9 @@ const deliveryInfo = new mongoose.Schema({
         min: 1,
         max: 20
     },
+    iconImg: {
+        type: String,
+    },
 
 }, { timestamps: true });
 

@@ -11,6 +11,10 @@ exports.createDeliveryInfo = (req, res) => {
             deliveryTime: req.body.deliveryTime,
 
         }
+        
+        if (req.file) {
+            deliveryInfoObj.iconImg = req.file.filename;
+        }
         const deliveryInfo = new DeliveryInfo(deliveryInfoObj)
         deliveryInfo.save((error, deliveryInfo) => {
             if (error) return res.status(400).json({ error });
