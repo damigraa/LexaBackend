@@ -4,14 +4,16 @@ const mongoose = require("mongoose")
 exports.createContact = (req, res) => {
     try {
         const contactObj = {
-            title: req.body.title,
-            description: req.body.description,
-            href: req.body.href
+            city: req.body.city,
+            address: req.body.address,
+            cityIndex: req.body.cityIndex,
+            country: req.body.country,
+            cityIndex: req.body.cityIndex,
+            email: req.body.email,
+            number: req.body.number,
+            numberTwo: req.body.numberTwo,
         }
 
-        if (req.file) {
-            contactObj.iconImg = req.file.filename;
-        }
         const con = new Contact(contactObj)
         con.save((error, contact) => {
             if (error) return res.status(400).json({ error, message: "Ошибка при создании!" })

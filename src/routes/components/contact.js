@@ -4,7 +4,7 @@ const { createContact, updateContact, deleteContact, getContacts } = require('..
 const router = express.Router()
 
 
-router.post("/contact/create", upload.single("iconImg"), createContact)
+router.post("/contact/create", requireSignin, adminMiddleware, createContact)
 router.get("/contact/get", getContacts)
 router.patch("/contact/update/:id", requireSignin, adminMiddleware, updateContact)
 router.delete("/contact/delete/:id", requireSignin, adminMiddleware, deleteContact)

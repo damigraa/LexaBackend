@@ -2,25 +2,33 @@ const mongoose = require("mongoose")
 
 const contactSchema = new mongoose.Schema({
 
-    title: {
-        type: String,
-        required: true,
-        min: 1,
-        max: 30
-    },
-    href: { 
+    city: {
         type: String,
         required: true,
     },
-    description: {
+    address: {
         type: String,
         required: true,
-        min: 1,
-        max: 150
     },
-    iconImg: {
+    cityIndex: {
         type: String,
-        // required: true,
+        required: true,
+    },
+    country: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,
+    },
+    number: {
+        type: String,
+        required: true,
+    },
+    numberTwo: {
+        type: String,
+        required: true,
     }
 }, { timestamps: true })
 

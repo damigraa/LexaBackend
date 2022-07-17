@@ -1,4 +1,4 @@
-const express = require("express");
+ const express = require("express");
 const env = require("dotenv");
 const app = express();
 const mongoose = require("mongoose");
@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const cors = require("cors");
 
-//routes 
+//routes  
 const authRoutes = require("./routes/auth")
 const adminRoutes = require("./routes/admin/auth")
 const categoryRoutes = require("./routes/category")
@@ -17,7 +17,7 @@ const pageRoutes = require("./routes/admin/page")
 const addressRoutes = require("./routes/address")
 const orderRoutes = require("./routes/order")
 const adminOrderRoute = require("./routes/admin/order.routes")
-const galleryRoute = require("./routes/gallery")
+const galleryRoute = require("./routes/gallery")   
 const applicationRoute = require("./routes/application")
 const mainImageRoutes = require("./routes/components/mainImage")
 const manufactureRoutes = require("./routes/components/manufacture")
@@ -31,8 +31,10 @@ const warrantyRoutes = require("./routes/components/warranty")
 const paymentListRoutes = require("./routes/components/paymentList")
 
 const paymentListInstructionRoutes = require("./routes/components/paymentListInstruction")
-const costDeliveryRoutes = require("./routes/components/costDelivery")
 const deliveryInfoRoutes = require("./routes/components/deliveryInfo")
+const costDeliveryRoutes = require("./routes/components/costDelivery")
+const aboutUsRoutes = require("./routes/components/aboutUs")
+const benefitsRoutes = require("./routes/components/benefits")
 
 
 
@@ -41,7 +43,7 @@ env.config();
 mongoose.connect(
   `mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@lexclaster.zko55.mongodb.net/?retryWrites=true&w=majority`,
   {
-    useNewUrlParser: true,
+    useNewUrlParser: true, 
     useUnifiedTopology: true,
   }
 ).then(() => {
@@ -78,7 +80,9 @@ app.use("/api", paymentListRoutes)
 app.use("/api", warrantyRoutes)
 
 app.use("/api", deliveryInfoRoutes)
+app.use("/api", aboutUsRoutes)
 app.use("/api", costDeliveryRoutes)
+app.use("/api", benefitsRoutes)
 
 
 
