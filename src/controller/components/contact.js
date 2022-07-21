@@ -8,7 +8,6 @@ exports.createContact = (req, res) => {
             address: req.body.address,
             cityIndex: req.body.cityIndex,
             country: req.body.country,
-            cityIndex: req.body.cityIndex,
             email: req.body.email,
             number: req.body.number,
             numberTwo: req.body.numberTwo,

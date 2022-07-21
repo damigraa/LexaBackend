@@ -35,6 +35,7 @@ const deliveryInfoRoutes = require("./routes/components/deliveryInfo")
 const costDeliveryRoutes = require("./routes/components/costDelivery")
 const aboutUsRoutes = require("./routes/components/aboutUs")
 const benefitsRoutes = require("./routes/components/benefits")
+const architectRoutes = require("./routes/components/architect")
 
 
 
@@ -44,7 +45,7 @@ mongoose.connect(
   `mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASSWORD}@lexclaster.zko55.mongodb.net/?retryWrites=true&w=majority`,
   {
     useNewUrlParser: true, 
-    useUnifiedTopology: true,
+    useUnifiedTopology: true, 
   }
 ).then(() => {
   console.log('Database connected')
@@ -83,6 +84,7 @@ app.use("/api", deliveryInfoRoutes)
 app.use("/api", aboutUsRoutes)
 app.use("/api", costDeliveryRoutes)
 app.use("/api", benefitsRoutes)
+app.use("/api", architectRoutes)
 
 
 
